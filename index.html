@@ -3,842 +3,659 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Meal Prepping for Pilou</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;700;900&family=Nunito:ital,wght@0,400;0,600;0,800;1,400;1,800&display=swap" rel="stylesheet">
+<title>The Leftover Chronicles</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap" rel="stylesheet">
 <style>
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-:root {
-  --bg: #FFFBF2;
-  --ink: #1A1A2E;
-  --p1-primary: #FF6B35;
-  --p1-secondary: #FFD23F;
-  --p1-light: #FFF3E0;
-  --p1-dark: #C4400A;
-  --p2-primary: #06D6A0;
-  --p2-secondary: #118AB2;
-  --p2-light: #E0FBF4;
-  --p2-dark: #047857;
-  --p3-primary: #EF476F;
-  --p3-secondary: #8338EC;
-  --p3-light: #FDE8EE;
-  --p3-dark: #B5194B;
-}
+  :root {
+    --cream: #FBF8F3;
+    --ink: #1A1814;
+    --muted: #7A7570;
+    --border: #E8E3DB;
+    --green: #2D6A4F;
+    --green-light: #D8F0E5;
+    --orange: #E8622A;
+    --orange-light: #FDE8DC;
+    --purple: #5B4FCF;
+    --purple-light: #EAE8FA;
+    --yellow: #F2B705;
+    --yellow-light: #FEF5D0;
+    --card-bg: #FFFFFF;
+  }
 
-html { scroll-behavior: smooth; }
-body { background: var(--bg); color: var(--ink); font-family: 'Nunito', sans-serif; overflow-x: hidden; }
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--ink);
+    min-height: 100vh;
+    padding: 0;
+  }
 
-/* HERO */
-.hero {
-  min-height: 100svh;
-  display: flex; flex-direction: column; align-items: center; justify-content: center;
-  text-align: center; padding: 4rem 1.5rem 3rem; position: relative; overflow: hidden;
-}
-.hero-bg { position: absolute; inset: 0; z-index: 0; }
-.blob {
-  position: absolute; border-radius: 50%; filter: blur(70px); opacity: 0.3;
-  animation: blobFloat 9s ease-in-out infinite alternate;
-}
-.blob-1 { width: 550px; height: 550px; background: #FF6B35; top: -180px; left: -120px; animation-delay: 0s; }
-.blob-2 { width: 420px; height: 420px; background: #FFD23F; top: 80px; right: -100px; animation-delay: -2.5s; }
-.blob-3 { width: 380px; height: 380px; background: #06D6A0; bottom: -80px; left: 25%; animation-delay: -5s; }
-.blob-4 { width: 320px; height: 320px; background: #EF476F; bottom: 40px; right: 5%; animation-delay: -1.5s; }
-@keyframes blobFloat {
-  from { transform: translate(0,0) scale(1); }
-  to   { transform: translate(25px,-35px) scale(1.06); }
-}
-.hero-content { position: relative; z-index: 1; }
-.hero-tag {
-  display: inline-block; background: var(--ink); color: var(--bg);
-  font-family: 'Unbounded', sans-serif; font-size: 10px; letter-spacing: 0.12em;
-  padding: 6px 16px; border-radius: 100px; margin-bottom: 1.5rem;
-  animation: fadeDown 0.6s ease both;
-}
-.hero h1 {
-  font-family: 'Unbounded', sans-serif; font-size: clamp(2.6rem, 8vw, 6rem);
-  font-weight: 900; line-height: 1.05; letter-spacing: -0.03em; margin-bottom: 1.5rem;
-  animation: fadeDown 0.6s 0.1s ease both;
-}
-.hero h1 .line-1 { display: block; color: var(--ink); }
-.hero h1 .line-3 {
-  display: block;
-  background: linear-gradient(135deg, #FF6B35, #EF476F, #8338EC);
-  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
-}
-.hero-sub {
-  font-size: clamp(1rem, 2.5vw, 1.2rem); font-weight: 600; color: var(--ink); opacity: 0.65;
-  max-width: 480px; margin: 0 auto 2.5rem; line-height: 1.65;
-  animation: fadeDown 0.6s 0.2s ease both;
-}
-.hero-nav {
-  display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;
-  animation: fadeDown 0.6s 0.4s ease both;
-}
-.plan-nav-btn {
-  font-family: 'Unbounded', sans-serif; font-size: 11px; font-weight: 700;
-  padding: 13px 22px; border-radius: 100px; border: 2.5px solid var(--ink);
-  background: white; cursor: pointer; text-decoration: none; color: var(--ink);
-  transition: transform 0.15s, box-shadow 0.15s;
-  box-shadow: 3px 3px 0 var(--ink);
-}
-.plan-nav-btn:hover { transform: translate(-2px,-2px); box-shadow: 5px 5px 0 var(--ink); }
-.btn-chicken { background: #FFD23F; }
-.btn-beans   { background: #06D6A0; }
-.btn-beef    { background: #EF476F; color: white; border-color: #B5194B; }
-@keyframes fadeDown {
-  from { opacity: 0; transform: translateY(-20px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
+  /* HEADER */
+  header {
+    padding: 3.5rem 2.5rem 2.5rem;
+    border-bottom: 1.5px solid var(--ink);
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 2rem;
+    flex-wrap: wrap;
+  }
 
-/* ACCORDION */
-.accordion-strip {
-  background: var(--ink);
-}
-.accordion-inner {
-  max-width: 860px; margin: 0 auto; padding: 2.5rem 1.5rem;
-  display: flex; flex-direction: column; gap: 2px;
-}
-.acc-item {
-  border-radius: 14px; overflow: hidden;
-  cursor: pointer;
-  transition: background 0.2s;
-}
-.acc-header {
-  display: flex; align-items: center; justify-content: space-between;
-  padding: 1.1rem 1.4rem; gap: 1rem;
-  user-select: none;
-}
-.acc-header-left { display: flex; align-items: center; gap: 14px; }
-.acc-color-bar {
-  width: 5px; height: 36px; border-radius: 3px; flex-shrink: 0;
-}
-.cb-orange { background: #FF6B35; }
-.cb-teal   { background: #06D6A0; }
-.cb-pink   { background: #EF476F; }
-.acc-headline {
-  font-family: 'Unbounded', sans-serif; font-size: clamp(13px, 2vw, 16px);
-  font-weight: 700; color: white; letter-spacing: -0.01em;
-}
-.acc-arrow {
-  width: 28px; height: 28px; border-radius: 50%;
-  background: rgba(255,255,255,0.08); color: white;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 14px; flex-shrink: 0;
-  transition: transform 0.35s cubic-bezier(0.34,1.56,0.64,1), background 0.2s;
-}
-.acc-item.open .acc-arrow { transform: rotate(45deg); background: rgba(255,255,255,0.18); }
-.acc-body {
-  display: grid; grid-template-rows: 0fr;
-  transition: grid-template-rows 0.38s cubic-bezier(0.4,0,0.2,1);
-}
-.acc-item.open .acc-body { grid-template-rows: 1fr; }
-.acc-body-inner {
-  overflow: hidden;
-  padding: 0 1.4rem 0 calc(1.4rem + 5px + 14px);
-}
-.acc-item.open .acc-body-inner { padding-bottom: 1.4rem; }
-.acc-content {
-  display: flex; gap: 2rem; align-items: flex-start; flex-wrap: wrap;
-}
-.acc-text {
-  flex: 1; min-width: 200px;
-  font-size: 14px; font-weight: 600; color: rgba(255,255,255,0.55);
-  line-height: 1.65;
-}
-.acc-visual {
-  flex-shrink: 0; width: 120px; height: 80px;
-  border-radius: 12px; display: flex; align-items: center; justify-content: center;
-  font-size: 2.2rem; letter-spacing: -0.02em;
-}
-.av-orange { background: rgba(255,107,53,0.18); }
-.av-teal   { background: rgba(6,214,160,0.15); }
-.av-pink   { background: rgba(239,71,111,0.15); }
+  .site-title {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(2.2rem, 5vw, 4rem);
+    font-weight: 800;
+    line-height: 1;
+    letter-spacing: -0.03em;
+  }
 
-.acc-item { background: rgba(255,255,255,0.04); }
-.acc-item:hover { background: rgba(255,255,255,0.07); }
-.acc-item.open  { background: rgba(255,255,255,0.07); }
+  .site-title span {
+    color: var(--orange);
+  }
 
-/* PLAN SECTIONS */
-.plan-section { padding: 5rem 1.5rem; position: relative; overflow: hidden; }
-.plan-section::before {
-  content: ''; position: absolute; top: -200px; right: -200px;
-  width: 600px; height: 600px; border-radius: 50%; opacity: 0.06; z-index: 0;
-}
-.plan-chicken { background: var(--p1-light); }
-.plan-chicken::before { background: var(--p1-primary); }
-.plan-beans   { background: var(--p2-light); }
-.plan-beans::before   { background: var(--p2-primary); }
-.plan-beef    { background: var(--p3-light); }
-.plan-beef::before    { background: var(--p3-primary); }
+  .header-meta {
+    text-align: right;
+  }
 
-.plan-inner { max-width: 1000px; margin: 0 auto; position: relative; z-index: 1; }
+  .header-tagline {
+    font-size: 13px;
+    color: var(--muted);
+    font-weight: 400;
+    max-width: 220px;
+    line-height: 1.5;
+  }
 
-/* PLAN HEADER */
-.plan-header {
-  display: grid; grid-template-columns: 1fr auto;
-  align-items: start; gap: 2rem; margin-bottom: 2.5rem;
-}
-.plan-eyebrow {
-  font-family: 'Unbounded', sans-serif; font-size: 10px; font-weight: 700;
-  letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 0.5rem; opacity: 0.5;
-}
-.plan-title {
-  font-family: 'Unbounded', sans-serif; font-size: clamp(2rem, 5vw, 3.5rem);
-  font-weight: 900; line-height: 1; letter-spacing: -0.03em; margin-bottom: 1rem;
-}
-.plan-chicken .plan-title { color: var(--p1-dark); }
-.plan-beans   .plan-title { color: var(--p2-dark); }
-.plan-beef    .plan-title { color: var(--p3-dark); }
-.plan-desc { font-size: 1rem; font-weight: 600; color: var(--ink); opacity: 0.6; max-width: 480px; line-height: 1.65; }
+  /* WEEK TABS */
+  .week-nav {
+    display: flex;
+    gap: 0;
+    padding: 1.5rem 2.5rem 0;
+    border-bottom: 1.5px solid var(--ink);
+  }
 
-.anchor-badge {
-  text-align: center; background: var(--ink); color: white;
-  border-radius: 20px; padding: 1.25rem 1.5rem; min-width: 130px; flex-shrink: 0;
-  border: 2.5px solid var(--ink);
-}
-.anchor-icon { font-size: 2.5rem; display: block; margin-bottom: 0.25rem; }
-.anchor-label { font-size: 10px; opacity: 0.5; font-weight: 700; font-family: 'Unbounded', sans-serif; letter-spacing: 0.1em; }
+  .week-btn {
+    font-family: 'Syne', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    padding: 0.75rem 2rem;
+    background: transparent;
+    border: none;
+    border-bottom: 3px solid transparent;
+    cursor: pointer;
+    color: var(--muted);
+    transition: color 0.15s;
+    position: relative;
+    bottom: -1.5px;
+  }
 
-/* CHIPS */
-.ingredient-chips { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 2.5rem; }
-.ing-chip { font-size: 12px; font-weight: 800; padding: 6px 14px; border-radius: 100px; border: 2px solid var(--ink); }
-.plan-chicken .ing-chip { background: #FF6B35; color: white; border-color: #C4400A; }
-.plan-beans   .ing-chip { background: #06D6A0; color: var(--ink); border-color: #047857; }
-.plan-beef    .ing-chip { background: #EF476F; color: white; border-color: #B5194B; }
+  .week-btn.active {
+    color: var(--ink);
+    border-bottom: 3px solid var(--ink);
+  }
 
-/* NIGHTS GRID */
-.nights-grid {
-  display: grid; grid-template-columns: repeat(2, 1fr);
-  gap: 16px; margin-bottom: 2.5rem;
-}
-.night-card {
-  background: white; border: 2.5px solid var(--ink); border-radius: 20px; padding: 1.5rem;
-  box-shadow: 4px 4px 0 var(--ink); transition: transform 0.15s, box-shadow 0.15s;
-  position: relative; overflow: hidden;
-}
-.night-card:hover { transform: translate(-3px,-3px); box-shadow: 7px 7px 0 var(--ink); }
-.night-number {
-  font-family: 'Unbounded', sans-serif; font-size: 56px; font-weight: 900; line-height: 1;
-  letter-spacing: -0.04em; position: absolute; top: 8px; right: 14px; opacity: 0.07; user-select: none;
-}
-.plan-chicken .night-number { color: var(--p1-primary); }
-.plan-beans   .night-number { color: var(--p2-primary); }
-.plan-beef    .night-number { color: var(--p3-primary); }
-.night-label {
-  font-family: 'Unbounded', sans-serif; font-size: 9px; font-weight: 700;
-  letter-spacing: 0.16em; text-transform: uppercase; margin-bottom: 0.5rem; opacity: 0.4;
-}
-.night-meal { font-size: 1rem; font-weight: 800; line-height: 1.4; margin-bottom: 0.5rem; }
-.night-note { font-size: 12px; font-weight: 600; color: var(--ink); opacity: 0.5; line-height: 1.5; }
-.reuse-tag {
-  display: inline-block; font-size: 9px; font-family: 'Unbounded', sans-serif; font-weight: 700;
-  letter-spacing: 0.06em; padding: 3px 8px; border-radius: 100px; margin-left: 5px;
-  vertical-align: middle; border: 1.5px solid;
-}
-.plan-chicken .reuse-tag { background: #FFD23F; color: var(--ink); border-color: var(--ink); }
-.plan-beans   .reuse-tag { background: #06D6A0; color: var(--ink); border-color: var(--ink); }
-.plan-beef    .reuse-tag { background: #8338EC; color: white; border-color: #6022CC; }
+  .week-btn:hover:not(.active) {
+    color: var(--ink);
+  }
 
-/* BOTTOM TWO COL */
-.plan-bottom { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  /* WEEK CONTENT */
+  .week-section { display: none; }
+  .week-section.active { display: block; }
 
-/* TIPS */
-.tips-card {
-  background: var(--ink); color: white; border-radius: 20px;
-  padding: 1.5rem; border: 2.5px solid var(--ink);
-}
-.card-title {
-  font-family: 'Unbounded', sans-serif; font-size: 10px; font-weight: 700;
-  letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 1rem; opacity: 0.5;
-}
-.tip-item {
-  font-size: 13px; font-weight: 600; line-height: 1.55; opacity: 0.75;
-  padding-left: 18px; position: relative; margin-bottom: 8px;
-}
-.tip-item::before {
-  content: '✦'; position: absolute; left: 0; font-size: 8px; top: 3px; opacity: 0.7;
-}
-.plan-chicken .tips-card .tip-item::before { color: #FFD23F; }
-.plan-beans   .tips-card .tip-item::before { color: #06D6A0; }
-.plan-beef    .tips-card .tip-item::before { color: #EF476F; }
+  /* WEEK INTRO */
+  .week-intro {
+    padding: 2.5rem 2.5rem 1rem;
+    display: flex;
+    align-items: baseline;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+  }
 
-/* GROCERY */
-.grocery-card {
-  background: white; border: 2.5px solid var(--ink); border-radius: 20px;
-  padding: 1.5rem; box-shadow: 4px 4px 0 var(--ink);
-}
-.grocery-card .card-title { color: var(--ink); }
-.grocery-list { list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 2px 12px; }
-.grocery-item {
-  display: flex; align-items: center; gap: 8px; cursor: pointer;
-  padding: 5px 4px; border-radius: 8px; transition: background 0.15s; user-select: none;
-}
-.grocery-item:hover { background: rgba(0,0,0,0.04); }
-.grocery-item input[type="checkbox"] {
-  appearance: none; -webkit-appearance: none;
-  width: 18px; height: 18px; border: 2px solid var(--ink); border-radius: 5px;
-  flex-shrink: 0; cursor: pointer; position: relative; transition: background 0.15s;
-}
-.plan-chicken .grocery-item input:checked { background: #FF6B35; border-color: #C4400A; }
-.plan-beans   .grocery-item input:checked { background: #06D6A0; border-color: #047857; }
-.plan-beef    .grocery-item input:checked { background: #EF476F; border-color: #B5194B; }
-.grocery-item input:checked::after {
-  content: '✓'; position: absolute; inset: 0;
-  display: flex; align-items: center; justify-content: center;
-  color: white; font-size: 11px; font-weight: 900;
-}
-.grocery-item .item-text {
-  font-size: 13px; font-weight: 600; color: var(--ink);
-  transition: opacity 0.2s; line-height: 1.35;
-}
-.grocery-item.checked .item-text { opacity: 0.3; text-decoration: line-through; }
-.grocery-reset {
-  margin-top: 1rem; font-size: 10px; font-family: 'Unbounded', sans-serif; font-weight: 700;
-  letter-spacing: 0.06em; background: none; border: 1.5px solid var(--ink);
-  border-radius: 100px; padding: 5px 12px; cursor: pointer; opacity: 0.3; transition: opacity 0.15s;
-}
-.grocery-reset:hover { opacity: 0.8; }
+  .week-number {
+    font-family: 'Syne', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
 
-/* PREP TASKS */
-.prep-tasks {
-  list-style: none; margin-top: 10px; padding-top: 10px;
-  border-top: 1.5px dashed rgba(26,26,46,0.12);
-  display: flex; flex-direction: column; gap: 3px;
-}
-.prep-task {
-  display: flex; align-items: center; gap: 7px; cursor: pointer;
-  padding: 3px 2px; border-radius: 6px; transition: background 0.12s; user-select: none;
-}
-.prep-task:hover { background: rgba(0,0,0,0.04); }
-.prep-task input[type="checkbox"] {
-  appearance: none; -webkit-appearance: none;
-  width: 14px; height: 14px; border: 2px solid rgba(26,26,46,0.3);
-  border-radius: 3px; flex-shrink: 0; cursor: pointer; position: relative; transition: all 0.12s;
-}
-.plan-chicken .prep-task input:checked { background: #FF6B35; border-color: #C4400A; }
-.plan-beans   .prep-task input:checked { background: #06D6A0; border-color: #047857; }
-.plan-beef    .prep-task input:checked { background: #EF476F; border-color: #B5194B; }
-.prep-task input:checked::after {
-  content: '✓'; position: absolute; inset: 0;
-  display: flex; align-items: center; justify-content: center;
-  color: white; font-size: 9px; font-weight: 900;
-}
-.prep-task .task-text {
-  font-size: 11px; font-weight: 700; color: var(--ink); opacity: 0.55;
-  line-height: 1.3; transition: opacity 0.15s; font-family: 'Nunito', sans-serif;
-}
-.prep-task.checked .task-text { opacity: 0.25; text-decoration: line-through; }
+  .week-theme {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(1.4rem, 3vw, 2rem);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+  }
 
-/* SECTION STRIP */
-.section-strip { display: flex; align-items: center; gap: 16px; margin-bottom: 1.5rem; }
-.section-strip-line { flex: 1; height: 2px; border-radius: 2px; opacity: 0.15; }
-.plan-chicken .section-strip-line { background: var(--p1-dark); }
-.plan-beans   .section-strip-line { background: var(--p2-dark); }
-.plan-beef    .section-strip-line { background: var(--p3-dark); }
-.section-strip-label {
-  font-family: 'Unbounded', sans-serif; font-size: 9px; font-weight: 700;
-  letter-spacing: 0.18em; text-transform: uppercase; opacity: 0.35;
-}
+  /* DAY GRID */
+  .days-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.5px;
+    border-top: 1.5px solid var(--ink);
+    border-left: 1.5px solid var(--ink);
+    margin: 0 2.5rem 2.5rem;
+  }
 
-/* FOOTER */
-footer {
-  background: var(--ink); color: white; text-align: center; padding: 3rem 2rem;
-}
-.footer-title {
-  font-family: 'Unbounded', sans-serif; font-size: clamp(1.5rem, 4vw, 2.5rem);
-  font-weight: 900; letter-spacing: -0.03em; line-height: 1.1; margin-bottom: 0.75rem;
-}
-.footer-sub { font-size: 14px; font-weight: 600; opacity: 0.35; }
-.footer-dots { display: flex; gap: 8px; justify-content: center; margin-top: 1.5rem; }
-.footer-dot { width: 10px; height: 10px; border-radius: 50%; }
+  .day-card {
+    background: var(--card-bg);
+    padding: 1.5rem;
+    border-right: 1.5px solid var(--ink);
+    border-bottom: 1.5px solid var(--ink);
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
 
-/* RESPONSIVE */
-@media (max-width: 640px) {
-  .plan-header { grid-template-columns: 1fr; }
-  .anchor-badge { display: none; }
-  .nights-grid { grid-template-columns: 1fr; }
-  .plan-bottom { grid-template-columns: 1fr; }
-  .grocery-list { grid-template-columns: 1fr; }
-  .how-strip { flex-direction: column; align-items: stretch; }
-  .how-item { max-width: 100%; }
-}
+  .day-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+
+  .day-label {
+    font-family: 'Syne', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .time-pill {
+    font-size: 11px;
+    font-weight: 500;
+    padding: 3px 10px;
+    border-radius: 20px;
+    background: var(--green-light);
+    color: var(--green);
+  }
+
+  .meal-emoji-large {
+    font-size: 2.5rem;
+    line-height: 1;
+  }
+
+  .meal-name {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+  }
+
+  .meal-desc {
+    font-size: 13.5px;
+    color: var(--muted);
+    line-height: 1.6;
+    font-weight: 400;
+  }
+
+  .leftover-block {
+    background: var(--cream);
+    border-radius: 8px;
+    padding: 0.85rem 1rem;
+    margin-top: auto;
+  }
+
+  .leftover-label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--orange);
+    margin-bottom: 4px;
+  }
+
+  .leftover-text {
+    font-size: 12.5px;
+    color: var(--muted);
+    line-height: 1.5;
+    font-style: italic;
+  }
+
+  /* INGREDIENTS */
+  .ingredients-row {
+    margin: 0 2.5rem 3rem;
+    border: 1.5px solid var(--ink);
+    border-radius: 12px;
+    overflow: hidden;
+  }
+
+  .ingredients-header {
+    background: var(--ink);
+    color: var(--cream);
+    padding: 1rem 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .ingredients-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .legend-pills {
+    display: flex;
+    gap: 10px;
+  }
+
+  .legend-pill {
+    font-size: 11px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    color: #ccc;
+  }
+
+  .legend-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  .ingredients-body {
+    padding: 1.25rem 1.5rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 2px;
+  }
+
+  .ing-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 7px 10px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.12s;
+    user-select: none;
+  }
+
+  .ing-item:hover { background: var(--cream); }
+
+  .ing-item input[type="checkbox"] {
+    appearance: none;
+    -webkit-appearance: none;
+    width: 17px;
+    height: 17px;
+    border-radius: 4px;
+    border: 1.5px solid currentColor;
+    flex-shrink: 0;
+    cursor: pointer;
+    position: relative;
+    transition: background 0.12s;
+  }
+
+  .ing-item input[type="checkbox"]:checked {
+    background: currentColor;
+  }
+
+  .ing-item input[type="checkbox"]:checked::after {
+    content: '';
+    position: absolute;
+    left: 3px;
+    top: 1px;
+    width: 9px;
+    height: 5px;
+    border-left: 2px solid var(--cream);
+    border-bottom: 2px solid var(--cream);
+    transform: rotate(-45deg);
+  }
+
+  .ing-label {
+    font-size: 13px;
+    font-weight: 400;
+    transition: opacity 0.15s, text-decoration 0.15s;
+  }
+
+  .ing-item.checked .ing-label {
+    opacity: 0.4;
+    text-decoration: line-through;
+  }
+
+  .ing-item.shared { color: var(--green); }
+  .ing-item.unique { color: #5A5550; }
+
+  .ing-section-label {
+    grid-column: 1 / -1;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    padding: 0.75rem 10px 0.25rem;
+    border-top: 1px solid var(--border);
+    margin-top: 0.25rem;
+  }
+
+  .ing-section-label:first-child {
+    border-top: none;
+    margin-top: 0;
+    padding-top: 0.25rem;
+  }
+
+  .clear-btn {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--muted);
+    background: transparent;
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 3px 12px;
+    cursor: pointer;
+    transition: color 0.12s, border-color 0.12s;
+  }
+
+  .clear-btn:hover { color: var(--ink); border-color: var(--muted); }
+
+  /* FOOTER */
+  footer {
+    border-top: 1.5px solid var(--ink);
+    padding: 1.5rem 2.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .footer-note {
+    font-size: 12px;
+    color: var(--muted);
+  }
+
+  .footer-badge {
+    font-family: 'Syne', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--orange);
+  }
+
+  /* COLOR ACCENTS per day */
+  .day-card:nth-child(1) .meal-emoji-large { filter: none; }
+  .day-card:nth-child(2) .time-pill { background: var(--purple-light); color: var(--purple); }
+  .day-card:nth-child(3) .time-pill { background: var(--orange-light); color: var(--orange); }
+  .day-card:nth-child(4) .time-pill { background: var(--yellow-light); color: #8a6500; }
+
+  @media (max-width: 600px) {
+    header, .week-intro, .days-grid, .ingredients-row, footer { padding-left: 1.25rem; padding-right: 1.25rem; }
+    .week-nav { padding-left: 1.25rem; }
+    .days-grid { margin-left: 1.25rem; margin-right: 1.25rem; }
+    .ingredients-row { margin-left: 1.25rem; margin-right: 1.25rem; }
+  }
 </style>
 </head>
 <body>
 
-<section class="hero">
-  <div class="hero-bg">
-    <div class="blob blob-1"></div>
-    <div class="blob blob-2"></div>
-    <div class="blob blob-3"></div>
-    <div class="blob blob-4"></div>
+<header>
+  <div class="site-title">The Leftover<br><span>Chronicles</span></div>
+  <div class="header-meta">
+    <p class="header-tagline">Cook once, eat twice. Four dinners. Zero waste. Two people.</p>
   </div>
-  <div class="hero-content">
-    <div class="hero-tag">🍳 Family Meal Prep</div>
-    <h1>
-      <span class="line-1">Meal Prepping</span>
-      <span class="line-3">for Pilou</span>
-    </h1>
-    <p class="hero-sub">Three 4-night dinner plans built around one anchor ingredient each — smart, varied, and easy on the grocery bill.</p>
-    <div class="hero-nav">
-      <a class="plan-nav-btn btn-chicken" href="#plan-chicken">🍗 Rotisserie Chicken</a>
-      <a class="plan-nav-btn btn-beans" href="#plan-beans">🫘 White Beans</a>
-      <a class="plan-nav-btn btn-beef" href="#plan-beef">🥩 Beef &amp; Lentils</a>
-    </div>
+</header>
+
+<nav class="week-nav">
+  <button class="week-btn active" onclick="showWeek(1)">Week 1</button>
+  <button class="week-btn" onclick="showWeek(2)">Week 2</button>
+</nav>
+
+<!-- WEEK 1 -->
+<div class="week-section active" id="week-1">
+  <div class="week-intro">
+    <span class="week-number">Week 01</span>
+    <h2 class="week-theme">The Classics, Done Well</h2>
   </div>
-</section>
 
-<div class="accordion-strip">
-  <div class="accordion-inner">
+  <div class="days-grid">
 
-    <div class="acc-item open" onclick="toggleAcc(this)">
-      <div class="acc-header">
-        <div class="acc-header-left">
-          <div class="acc-color-bar cb-orange"></div>
-          <div class="acc-headline">One anchor ingredient, four nights</div>
-        </div>
-        <div class="acc-arrow">+</div>
+    <div class="day-card">
+      <div class="day-header">
+        <span class="day-label">Monday</span>
+        <span class="time-pill">30 min</span>
       </div>
-      <div class="acc-body">
-        <div class="acc-body-inner">
-          <div class="acc-content">
-            <p class="acc-text">Each plan is built around one cheap workhorse ingredient — a rotisserie chicken, a pound of dried beans, or a lb of ground beef — that does three or four different jobs across the week. One shop, one big cook, four real dinners.</p>
-            <div class="acc-visual av-orange">⚓</div>
-          </div>
-        </div>
+      <div class="meal-emoji-large">🍲</div>
+      <div class="meal-name">Chicken thigh & chickpea stew</div>
+      <div class="meal-desc">Bone-in thighs braised with canned tomatoes, chickpeas, garlic, onion, smoked paprika and cumin. Serve over rice or with crusty bread.</div>
+      <div class="leftover-block">
+        <div class="leftover-label">☀️ Tuesday lunch</div>
+        <div class="leftover-text">Reheat as-is or spoon into a wrap with a handful of spinach. Flavours deepen overnight.</div>
       </div>
     </div>
 
-    <div class="acc-item" onclick="toggleAcc(this)">
-      <div class="acc-header">
-        <div class="acc-header-left">
-          <div class="acc-color-bar cb-teal"></div>
-          <div class="acc-headline">Flavor pivot every night</div>
-        </div>
-        <div class="acc-arrow">+</div>
+    <div class="day-card">
+      <div class="day-header">
+        <span class="day-label">Tuesday</span>
+        <span class="time-pill">25 min</span>
       </div>
-      <div class="acc-body">
-        <div class="acc-body-inner">
-          <div class="acc-content">
-            <p class="acc-text">Same cooked base, completely different spice identity the next night. Mexican → Italian → Middle Eastern. Cumin and oregano on Tuesday, bay leaf and milk on Wednesday. You're not eating leftovers — you're eating a different dish that happens to share a prep session.</p>
-            <div class="acc-visual av-teal">↻</div>
-          </div>
-        </div>
+      <div class="meal-emoji-large">🍝</div>
+      <div class="meal-name">Sausage & tomato pasta</div>
+      <div class="meal-desc">Italian sausage broken into chunks, sautéed with garlic and onion, simmered in canned tomatoes. Toss with rigatoni, finish with parmesan.</div>
+      <div class="leftover-block">
+        <div class="leftover-label">☀️ Wednesday lunch</div>
+        <div class="leftover-text">Reheat with a splash of water, or eat room-temp with lemon and fresh spinach stirred in.</div>
       </div>
     </div>
 
-    <div class="acc-item" onclick="toggleAcc(this)">
-      <div class="acc-header">
-        <div class="acc-header-left">
-          <div class="acc-color-bar cb-pink"></div>
-          <div class="acc-headline">Everything is checkable</div>
-        </div>
-        <div class="acc-arrow">+</div>
+    <div class="day-card">
+      <div class="day-header">
+        <span class="day-label">Wednesday</span>
+        <span class="time-pill">25 min</span>
       </div>
-      <div class="acc-body">
-        <div class="acc-body-inner">
-          <div class="acc-content">
-            <p class="acc-text">Every shopping list and every night's prep tasks are interactive. Tap an item to cross it off as you shop or cook. Hit reset to start fresh. Works on your phone while you're standing in the grocery aisle or standing at the counter.</p>
-            <div class="acc-visual av-pink">✓</div>
-          </div>
-        </div>
+      <div class="meal-emoji-large">🐟</div>
+      <div class="meal-name">Sheet pan salmon & roasted veg</div>
+      <div class="meal-desc">Salmon fillets with broccoli, cherry tomatoes, onion. Dress with olive oil, garlic, lemon zest and herbs. Roast at 425°F for 18–20 min.</div>
+      <div class="leftover-block">
+        <div class="leftover-label">☀️ Thursday lunch</div>
+        <div class="leftover-text">Flake cold salmon over spinach with lemon and olive oil, or tuck into a wrap.</div>
       </div>
     </div>
 
+    <div class="day-card">
+      <div class="day-header">
+        <span class="day-label">Thursday</span>
+        <span class="time-pill">25 min</span>
+      </div>
+      <div class="meal-emoji-large">🥩</div>
+      <div class="meal-name">Beef & veggie stir-fry over rice</div>
+      <div class="meal-desc">Thinly sliced flank steak stir-fried with garlic, onion, bell pepper and spinach in a soy-garlic sauce. One pan, served over steamed rice.</div>
+      <div class="leftover-block">
+        <div class="leftover-label">☀️ Friday lunch</div>
+        <div class="leftover-text">Pack over rice. Add a squeeze of lemon and sesame oil if you have it. Great cold too.</div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="ingredients-row">
+    <div class="ingredients-header">
+      <span class="ingredients-title">Shopping list</span>
+      <div style="display:flex;align-items:center;gap:12px;">
+        <div class="legend-pills">
+          <span class="legend-pill"><span class="legend-dot" style="background:#2D6A4F;"></span>Pantry staples</span>
+          <span class="legend-pill"><span class="legend-dot" style="background:#888;"></span>Buy fresh</span>
+        </div>
+        <button class="clear-btn" onclick="clearList('w1')" style="color:#aaa;border-color:#444;">Clear</button>
+      </div>
+    </div>
+    <div class="ingredients-body" id="w1-list">
+      <div class="ing-section-label">Pantry staples</div>
+      <label class="ing-item shared"><input type="checkbox" onchange="toggleItem(this)"><span class="ing-label">Garlic</span></label>
+      <label class="ing-item shared"><input type="checkbox" onchange="toggleItem(this)"><span class="ing-label">Onion</span></label>
+      <label class="ing-item shared"><input type="checkbox" onchange="toggleItem(this)"><span class="ing-label">Olive oil</span></label>
+      <label class="ing-item shared"><input type="checkbox" onchange="toggleItem(this)"><span class="ing-label">Canned tomatoes ×3</span></label>
+      <label class="ing-item shared"><input type="checkbox" onchange="toggleItem(this)"><span class="ing-label">Spinach</span></label>
+      <label class="ing-item shared"><input type="checkbox" onchange="toggleItem(this)"><span class="ing-label">Lemon</span></label>
+      <label class="ing-item shared"><input type="checkbox" onchange="toggleItem(this)"><span class="ing-label">Rice</span></label>
+      <div class="ing-section-label">Buy fresh</div>
+      <label class="ing-item unique"><input type="checkbox" onchange="toggleItem(this)"><span class="ing-label">Chicken thighs ×4</span></label>
+      <label class="ing-item unique"><input type="checkbox" onchange="toggleItem(this)"><span class="ing-label">Chickpeas ×1 can</span></label>
+      <label class="ing-item unique"><input type="checkbox" onchange="toggleItem(this)"><span class="ing-label">Smoked paprika</span></label>
+      <label class="ing-item unique"><input type="checkbox" onchange="toggleItem(this)"><span class="ing-label">Cumin</span></label>
+      <label class="ing-item unique"><input type="checkbox" onchange="toggleItem(this)"><span class="ing-label">Italian sausages ×4</span></label>
+      <label class="ing-item unique"><input type="checkbox" onchange="toggleItem(this)"><span class="ing-label">Rigatoni 500g</span></label>
+      <label class="ing-item unique"><input type="checkbox" onchange="toggleItem(this)"><span class="ing-label">Parmesan</span></label>
+      <label class="ing-item unique"><input type="checkbox" onchange="toggleItem(this)"><span class="ing-label">Salmon fillets ×2</span></label>
+      <label class="ing-item unique"><input type="checkbox" onchange="toggleItem(this)"><span class="ing-label">Broccoli</span></label>
+      <label class="ing-item unique"><input type="checkbox" onchange="toggleItem(this)"><span class="ing-label">Cherry tomatoes</span></label>
+      <label class="ing-item unique"><input type="checkbox" onchange="toggleItem(this)"><span class="ing-label">Dried herbs</span></label>
+      <label class="ing-item unique"><input type="checkbox" onchange="toggleItem(this)"><span class="ing-label">Beef flank 350g</span></label>
+      <label class="ing-item unique"><input type="checkbox" onchange="toggleItem(this)"><span class="ing-label">Bell pepper</span></label>
+      <label class="ing-item unique"><input type="checkbox" onchange="toggleItem(this)"><span class="ing-label">Soy sauce</span></label>
+    </div>
   </div>
 </div>
 
-<!-- PLAN 1 -->
-<section class="plan-section plan-chicken" id="plan-chicken">
-  <div class="plan-inner">
-    <div class="plan-header">
-      <div>
-        <div class="plan-eyebrow">Plan 01 · Mediterranean</div>
-        <h2 class="plan-title">Rotisserie<br>Chicken Week</h2>
-        <p class="plan-desc">One store-bought rotisserie chicken covers four dinners across three flavor profiles. Simmer the carcass while you eat night one — free stock for night three.</p>
-      </div>
-      <div class="anchor-badge">
-        <span class="anchor-icon">🍗</span>
-        <div class="anchor-label">ANCHOR</div>
-      </div>
-    </div>
-    <div class="ingredient-chips">
-      <span class="ing-chip">Rotisserie chicken</span>
-      <span class="ing-chip">Farro or barley</span>
-      <span class="ing-chip">Canned chickpeas</span>
-    </div>
-    <div class="section-strip">
-      <div class="section-strip-line"></div>
-      <span class="section-strip-label">4 Nights</span>
-      <div class="section-strip-line"></div>
-    </div>
-    <div class="nights-grid">
-      <div class="night-card">
-        <div class="night-number">1</div>
-        <div class="night-label">Night One</div>
-        <div class="night-meal">Harissa chicken &amp; farro bowl with roasted zucchini, feta, cucumber</div>
-        <div class="night-note">Use breast meat. Cook the full farro pot tonight — it feeds night two as well.</div>
-        <ul class="prep-tasks">
-          <li class="prep-task" onclick="toggleTask(this)"><input type="checkbox"><span class="task-text">Strip the whole chicken, separate white &amp; dark meat</span></li>
-          <li class="prep-task" onclick="toggleTask(this)"><input type="checkbox"><span class="task-text">Rinse 1.5 cups farro, bring to boil with salted water</span></li>
-          <li class="prep-task" onclick="toggleTask(this)"><input type="checkbox"><span class="task-text">Slice zucchini into half-moons, toss with oil &amp; salt</span></li>
-          <li class="prep-task" onclick="toggleTask(this)"><input type="checkbox"><span class="task-text">Roast zucchini at 425°F until caramelized, ~20 min</span></li>
-          <li class="prep-task" onclick="toggleTask(this)"><input type="checkbox"><span class="task-text">Dice cucumber, crumble feta, set aside</span></li>
-          <li class="prep-task" onclick="toggleTask(this)"><input type="checkbox"><span class="task-text">Simmer carcass in water with onion overnight for stock</span></li>
-        </ul>
-      </div>
-      <div class="night-card">
-        <div class="night-number">2</div>
-        <div class="night-label">Night Two</div>
-        <div class="night-meal">Chicken &amp; chickpea skillet with tomatoes, olives, lemon, wilted spinach <span class="reuse-tag">↻ farro</span></div>
-        <div class="night-note">Use thigh and leg meat. Serve over leftover farro reheated with a splash of stock.</div>
-        <ul class="prep-tasks">
-          <li class="prep-task" onclick="toggleTask(this)"><input type="checkbox"><span class="task-text">Drain and rinse chickpeas, pat dry</span></li>
-          <li class="prep-task" onclick="toggleTask(this)"><input type="checkbox"><span class="task-text">Halve olives, mince 3 garlic cloves</span></li>
-          <li class="prep-task" onclick="toggleTask(this)"><input type="checkbox"><span class="task-text">Sauté garlic, add tomatoes + chickpeas, cook 5 min</span></li>
-          <li class="prep-task" onclick="toggleTask(this)"><input type="checkbox"><span class="task-text">Add dark meat chicken, olives, squeeze of lemon</span></li>
-          <li class="prep-task" onclick="toggleTask(this)"><input type="checkbox"><span class="task-text">Wilt spinach in last 2 minutes</span></li>
-          <li class="prep-task" onclick="toggleTask(this)"><input type="checkbox"><span class="task-text">Reheat farro with a splash of stock in a small pan</span></li>
-        </ul>
-      </div>
-      <div class="night-card">
-        <div class="night-number">3</div>
-        <div class="night-label">Night Three</div>
-        <div class="night-meal">Chicken noodle soup from carcass stock — carrots, celery, egg noodles</div>
-        <div class="night-note">Simmer the carcass overnight after night one. Free, rich stock ready by morning.</div>
-        <ul class="prep-tasks">
-          <li class="prep-task" onclick="toggleTask(this)"><input type="checkbox"><span class="task-text">Strain the carcass stock, discard solids</span></li>
-          <li class="prep-task" onclick="toggleTask(this)"><input type="checkbox"><span class="task-text">Peel and slice carrots into coins</span></li>
-          <li class="prep-task" onclick="toggleTask(this)"><input type="checkbox"><span class="task-text">Slice celery into thin half-moons</span></li>
-          <li class="prep-task" onclick="toggleTask(this)"><input type="checkbox"><span class="task-text">Dice half an onion, sauté in pot until soft</span></li>
-          <li class="prep-task" onclick="toggleTask(this)"><input type="checkbox"><span class="task-text">Add stock + veg, simmer 10 min</span></li>
-          <li class="prep-task" onclick="toggleTask(this)"><input type="checkbox"><span class="task-text">Add egg noodles, cook until tender, season well</span></li>
-        </ul>
-      </div>
-      <div class="night-card">
-        <div class="night-number">4</div>
-        <div class="night-label">Night Four</div>
-        <div class="night-meal">Sheet pan chicken sausage with roasted potatoes and broccolini</div>
-        <div class="night-note">One link per person. Fresh protein closes the week on a completely different note.</div>
-        <ul class="prep-tasks">
-          <li class="prep-task" onclick="toggleTask(this)"><input type="checkbox"><span class="task-text">Halve baby potatoes, toss with oil, salt, garlic powder</span></li>
-          <li class="prep-task" onclick="toggleTask(this)"><input type="checkbox"><span class="task-text">Break broccolini into florets, trim woody ends</span></li>
-          <li class="prep-task" onclick="toggleTask(this)"><input type="checkbox"><span class="task-text">Slice sausage links on the bias into thick coins</span></li>
-          <li class="prep-task" onclick="toggleTask(this)"><input type="checkbox"><span class="task-text">Spread everything on sheet pan, don't crowd it</span></li>
-          <li class="prep-task" onclick="toggleTask(this)"><input type="checkbox"><span class="task-text">Roast at 425°F for 25 min, flip halfway</span></li>
-        </ul>
-      </div>
-    </div>
-    <div class="section-strip">
-      <div class="section-strip-line"></div>
-      <span class="section-strip-label">Prep Notes + Shopping</span>
-      <div class="section-strip-line"></div>
-    </div>
-    <div class="plan-bottom">
-      <div class="tips-card">
-        <div class="card-title">✦ Prep Notes</div>
-        <div class="tip-item">Peel and slice 3 carrots into coins, slice 3 celery stalks into half-moons</div>
-        <div class="tip-item">Slice zucchini into ½-inch half-moons, toss with oil and salt before roasting</div>
-        <div class="tip-item">Dice cucumber into small cubes, keep separate until plating</div>
-        <div class="tip-item">Pull chicken meat off the bone in large chunks — don't shred it too fine</div>
-      </div>
-      <div class="grocery-card">
-        <div class="card-title">Shopping List</div>
-        <ul class="grocery-list" id="list-chicken">
-          <li class="grocery-item" onclick="toggleItem(this)"><input type="checkbox"><span class="item-text">Rotisserie chicken</span></li>
-          <li class="grocery-item" onclick="toggleItem(this)"><input type="checkbox"><span class="item-text">Chicken sausage (4 links)</span></li>
-          <li class="grocery-item" onclick="toggleItem(this)"><input type="checkbox"><span class="item-text">Farro or pearl barley</span></li>
-          <li class="grocery-item" onclick="toggleItem(this)"><input type="checkbox"><span class="item-text">Canned chickpeas</span></li>
-          <li class="grocery-item" onclick="toggleItem(this)"><input type="checkbox"><span class="item-text">Canned diced tomatoes</span></li>
-          <li class="grocery-item" onclick="toggleItem(this)"><input type="checkbox"><span class="item-text">Egg noodles</span></li>
-          <li class="grocery-item" onclick="toggleItem(this)"><input type="checkbox"><span class="item-text">Zucchini + broccolini</span></li>
-          <li class="grocery-item" onclick="toggleItem(this)"><input type="checkbox"><span class="item-text">Carrots, celery, onion</span></li>
-          <li class="grocery-item" onclick="toggleItem(this)"><input type="checkbox"><span class="item-text">Baby or Yukon potatoes</span></li>
-          <li class="grocery-item" onclick="toggleItem(this)"><input type="checkbox"><span class="item-text">Spinach</span></li>
-          <li class="grocery-item" onclick="toggleItem(this)"><input type="checkbox"><span class="item-text">Feta crumbles</span></li>
-          <li class="grocery-item" onclick="toggleItem(this)"><input type="checkbox"><span class="item-text">Kalamata olives</span></li>
-          <li class="grocery-item" onclick="toggleItem(this)"><input type="checkbox"><span class="item-text">Harissa paste</span></li>
-          <li class="grocery-item" onclick="toggleItem(this)"><input type="checkbox"><span class="item-text">Garlic + cucumber</span></li>
-        </ul>
-        <button class="grocery-reset" onclick="resetList('list-chicken')">Reset list</button>
-      </div>
-    </div>
+<!-- WEEK 2 -->
+<div class="week-section" id="week-2">
+  <div class="week-intro">
+    <span class="week-number">Week 02</span>
+    <h2 class="week-theme">A Little More Adventure</h2>
   </div>
-</section>
 
-<!-- PLAN 2 -->
-<section class="plan-section plan-beans" id="plan-beans">
-  <div class="plan-inner">
-    <div class="plan-header">
-      <div>
-        <div class="plan-eyebrow">Plan 02 · Tuscan</div>
-        <h2 class="plan-title">White Bean<br>Week</h2>
-        <p class="plan-desc">Dried cannellini beans cooked from scratch anchor all four nights. One pot of stew on night one becomes pasta e fagioli by night two — zero extra work.</p>
-      </div>
-      <div class="anchor-badge">
-        <span class="anchor-icon">🫘</span>
-        <div class="anchor-label">ANCHOR</div>
-      </div>
-    </div>
-    <div class="ingredient-chips">
-      <span class="ing-chip">Dried cannellini beans</span>
-      <span class="ing-chip">Italian or andouille sausage</span>
-      <span class="ing-chip">Parmesan rind</span>
-    </div>
-    <div class="section-strip">
-      <div class="section-strip-line"></div>
-      <span class="section-strip-label">4 Nights</span>
-      <div class="section-strip-line"></div>
-    </div>
-    <div class="nights-grid">
-      <div class="night-card">
-        <div class="night-number">1</div>
-        <div class="night-label">Night One</div>
-        <div class="night-meal">White bean &amp; sausage stew with kale, rosemary, parmesan rind, crusty bread</div>
-        <div class="night-note">Make a big pot — this is also the base for night 2. The rind is non-negotiable.</div>
-        <ul class="prep-tasks">
-          <li class="prep-task" onclick="toggleTask(this)"><input type="checkbox"><span class="task-text">Drain soaked beans, rinse well</span></li>
-          <li class="prep-task" onclick="toggleTask(this)"><input type="checkbox"><span class="task-text">Dice onion, celery, and carrot into small pieces</span></li>
-          <li class="prep-task" onclick="toggleTask(this)"><input type="checkbox"><span class="task-text">Slice sausage into rounds, brown in pot first</span></li>
-          <li class="prep-task" onclick="toggleTask(this)"><input type="checkbox"><span class="task-text">Sauté veg in sausage fat, add garlic + rosemary</span></li>
-          <li class="prep-task" onclick="toggleTask(this)"><input type="checkbox"><span class="task-text">Strip kale leaves from stems, tear into pieces</span></li>
-          <li class="prep-task" onclick="toggleTask(this)"><input type="checkbox"><span class="task-text">Add beans, tomatoes, parmesan rind + water, simmer 45 min</span></li>
-        </ul>
-      </div>
-      <div class="night-card">
-        <div class="night-number">2</div>
-        <div class="night-label">Night Two</div>
-        <div class="night-meal">Pasta e fagioli <span class="reuse-tag">↻ stew</span></div>
-        <div class="night-note">Thin leftover stew with pasta water. Stir in ditalini or small shells. Done in 12 minutes.</div>
-        <ul class="prep-tasks">
-          <li class="prep-task" onclick="toggleTask(this)"><input type="checkbox"><span class="task-text">Bring salted water to a boil for the pasta</span></li>
-          <li class="prep-task" onclick="toggleTask(this)"><input type="checkbox"><span class="task-text">Reheat stew over medium, adding a ladle of pasta water</span></li>
-          <li class="prep-task" onclick="toggleTask(this)"><input type="checkbox"><span class="task-text">Cook ditalini 2 min less than package says</span></li>
-          <li class="prep-task" onclick="toggleTask(this)"><input type="checkbox"><span class="task-text">Scoop pasta directly into stew with a slotted spoon</span></li>
-          <li class="prep-task" onclick="toggleTask(this)"><input type="checkbox"><span class="task-text">Finish with good olive oil and black pepper</span></li>
-        </ul>
-      </div>
-      <div class="night-card">
-        <div class="night-number">3</div>
-        <div class="night-label">Night Three</div>
-        <div class="night-meal">Skillet sausage with white beans, fennel, garlic, white wine pan sauce</div>
-        <div class="night-note">Fresh cook tonight. The fennel completely shifts the flavor direction from the stew nights.</div>
-        <ul class="prep-tasks">
-          <li class="prep-task" onclick="toggleTask(this)"><input type="checkbox"><span class="task-text">Trim fennel, halve and slice thin — save the fronds</span></li>
-          <li class="prep-task" onclick="toggleTask(this)"><input type="checkbox"><span class="task-text">Slice sausage links lengthwise, brown cut-side down</span></li>
-          <li class="prep-task" onclick="toggleTask(this)"><input type="checkbox"><span class="task-text">Remove sausage, sauté fennel in same pan until soft</span></li>
-          <li class="prep-task" onclick="toggleTask(this)"><input type="checkbox"><span class="task-text">Add garlic, deglaze with white wine, scrape up all the bits</span></li>
-          <li class="prep-task" onclick="toggleTask(this)"><input type="checkbox"><span class="task-text">Add beans + sausage back in, cook 5 more minutes</span></li>
-          <li class="prep-task" onclick="toggleTask(this)"><input type="checkbox"><span class="task-text">Top with fennel fronds and a drizzle of olive oil</span></li>
-        </ul>
-      </div>
-      <div class="night-card">
-        <div class="night-number">4</div>
-        <div class="night-label">Night Four</div>
-        <div class="night-meal">Fried eggs over white bean purée with sautéed greens &amp; sausage crumbles <span class="reuse-tag">↻ beans</span></div>
-        <div class="night-note">Mash beans with olive oil and lemon. 20 minutes, incredibly filling, dead simple.</div>
-        <ul class="prep-tasks">
-          <li class="prep-task" onclick="toggleTask(this)"><input type="checkbox"><span class="task-text">Warm beans in a pan with olive oil and 1 garlic clove</span></li>
-          <li class="prep-task" onclick="toggleTask(this)"><input type="checkbox"><span class="task-text">Mash roughly with a fork — chunky is better than smooth</span></li>
-          <li class="prep-task" onclick="toggleTask(this)"><input type="checkbox"><span class="task-text">Season with lemon juice, salt, and red pepper flakes</span></li>
-          <li class="prep-task" onclick="toggleTask(this)"><input type="checkbox"><span class="task-text">Sauté greens in a separate pan until wilted</span></li>
-          <li class="prep-task" onclick="toggleTask(this)"><input type="checkbox"><span class="task-text">Crumble any remaining sausage, crisp in the same pan</span></li>
-          <li class="prep-task" onclick="toggleTask(this)"><input type="checkbox"><span class="task-text">Fry eggs to your liking, lay over the purée</span></li>
-        </ul>
-      </div>
-    </div>
-    <div class="section-strip">
-      <div class="section-strip-line"></div>
-      <span class="section-strip-label">Prep Notes + Shopping</span>
-      <div class="section-strip-line"></div>
-    </div>
-    <div class="plan-bottom">
-      <div class="tips-card">
-        <div class="card-title">✦ Prep Notes</div>
-        <div class="tip-item">Drain the soaked beans and rinse under cold water until it runs clear</div>
-        <div class="tip-item">Dice onion, 2 carrots, and 2 celery stalks into a fine, even mince</div>
-        <div class="tip-item">Strip kale leaves off their stems, tear into palm-sized pieces</div>
-        <div class="tip-item">Trim fennel bulb, halve it, then slice very thin crosswise — save the green fronds</div>
-      </div>
-      <div class="grocery-card">
-        <div class="card-title">Shopping List</div>
-        <ul class="grocery-list" id="list-beans">
-          <li class="grocery-item" onclick="toggleItem(this)"><input type="checkbox"><span class="item-text">Dried cannellini beans (1 lb)</span></li>
-          <li class="grocery-item" onclick="toggleItem(this)"><input type="checkbox"><span class="item-text">Italian or andouille sausage</span></li>
-          <li class="grocery-item" onclick="toggleItem(this)"><input type="checkbox"><span class="item-text">Ditalini or small pasta</span></li>
-          <li class="grocery-item" onclick="toggleItem(this)"><input type="checkbox"><span class="item-text">Canned diced tomatoes</span></li>
-          <li class="grocery-item" onclick="toggleItem(this)"><input type="checkbox"><span class="item-text">Eggs (6-pack)</span></li>
-          <li class="grocery-item" onclick="toggleItem(this)"><input type="checkbox"><span class="item-text">Crusty bread (1 loaf)</span></li>
-          <li class="grocery-item" onclick="toggleItem(this)"><input type="checkbox"><span class="item-text">Kale or Swiss chard</span></li>
-          <li class="grocery-item" onclick="toggleItem(this)"><input type="checkbox"><span class="item-text">Fennel bulb</span></li>
-          <li class="grocery-item" onclick="toggleItem(this)"><input type="checkbox"><span class="item-text">Onion, garlic, celery, carrot</span></li>
-          <li class="grocery-item" onclick="toggleItem(this)"><input type="checkbox"><span class="item-text">Parmesan rind or wedge</span></li>
-          <li class="grocery-item" onclick="toggleItem(this)"><input type="checkbox"><span class="item-text">Dry white wine</span></li>
-          <li class="grocery-item" onclick="toggleItem(this)"><input type="checkbox"><span class="item-text">Fresh or dried rosemary</span></li>
-          <li class="grocery-item" onclick="toggleItem(this)"><input type="checkbox"><span class="item-text">Leafy greens (night 4)</span></li>
-          <li class="grocery-item" onclick="toggleItem(this)"><input type="checkbox"><span class="item-text">Good olive oil</span></li>
-        </ul>
-        <button class="grocery-reset" onclick="resetList('list-beans')">Reset list</button>
-      </div>
-    </div>
-  </div>
-</section>
+  <div class="days-grid">
 
-<!-- PLAN 3 -->
-<section class="plan-section plan-beef" id="plan-beef">
-  <div class="plan-inner">
-    <div class="plan-header">
-      <div>
-        <div class="plan-eyebrow">Plan 03 · Global</div>
-        <h2 class="plan-title">Ground Beef<br>&amp; Lentil Week</h2>
-        <p class="plan-desc">1 lb of beef stretched 50/50 with lentils spans Mexican, Italian, and Middle Eastern flavors. Same cooked base, three completely different spice identities.</p>
+    <div class="day-card">
+      <div class="day-header">
+        <span class="day-label">Monday</span>
+        <span class="time-pill">30 min</span>
       </div>
-      <div class="anchor-badge">
-        <span class="anchor-icon">🥩</span>
-        <div class="anchor-label">ANCHOR</div>
-      </div>
-    </div>
-    <div class="ingredient-chips">
-      <span class="ing-chip">Ground beef (1 lb)</span>
-      <span class="ing-chip">Green or French lentils</span>
-      <span class="ing-chip">Eggs</span>
-    </div>
-    <div class="section-strip">
-      <div class="section-strip-line"></div>
-      <span class="section-strip-label">4 Nights</span>
-      <div class="section-strip-line"></div>
-    </div>
-    <div class="nights-grid">
-      <div class="night-card">
-        <div class="night-number">1</div>
-        <div class="night-label">Night One</div>
-        <div class="night-meal">Beef &amp; lentil picadillo tacos with pickled jalapeño, cotija, lime crema</div>
-        <div class="night-note">Brown ALL the beef tonight. Use half the lentil batch with cumin, oregano, cinnamon.</div>
-        <ul class="prep-tasks">
-          <li class="prep-task" onclick="toggleTask(this)"><input type="checkbox"><span class="task-text">Cook 1.5 cups lentils in salted water until just tender</span></li>
-          <li class="prep-task" onclick="toggleTask(this)"><input type="checkbox"><span class="task-text">Brown all 1 lb beef in a wide pan, break it up finely</span></li>
-          <li class="prep-task" onclick="toggleTask(this)"><input type="checkbox"><span class="task-text">Season half the beef with cumin, oregano, cinnamon, chili</span></li>
-          <li class="prep-task" onclick="toggleTask(this)"><input type="checkbox"><span class="task-text">Stir in half the lentils, cook together 5 minutes</span></li>
-          <li class="prep-task" onclick="toggleTask(this)"><input type="checkbox"><span class="task-text">Mix sour cream with lime zest + juice for crema</span></li>
-          <li class="prep-task" onclick="toggleTask(this)"><input type="checkbox"><span class="task-text">Warm tortillas directly over a gas flame or dry skillet</span></li>
-        </ul>
-      </div>
-      <div class="night-card">
-        <div class="night-number">2</div>
-        <div class="night-label">Night Two</div>
-        <div class="night-meal">Beef-lentil Bolognese over pappardelle or rigatoni <span class="reuse-tag">↻ beef</span></div>
-        <div class="night-note">Same meat base, totally different world — bay, thyme, tomato paste, splash of milk.</div>
-        <ul class="prep-tasks">
-          <li class="prep-task" onclick="toggleTask(this)"><input type="checkbox"><span class="task-text">Dice half an onion and 2 carrots very small</span></li>
-          <li class="prep-task" onclick="toggleTask(this)"><input type="checkbox"><span class="task-text">Sauté veg in olive oil until soft, ~8 minutes</span></li>
-          <li class="prep-task" onclick="toggleTask(this)"><input type="checkbox"><span class="task-text">Add reserved beef, stir in tomato paste, cook 2 min</span></li>
-          <li class="prep-task" onclick="toggleTask(this)"><input type="checkbox"><span class="task-text">Add whole tomatoes, bay leaf, thyme, splash of milk</span></li>
-          <li class="prep-task" onclick="toggleTask(this)"><input type="checkbox"><span class="task-text">Simmer 20 min low while pasta water comes to boil</span></li>
-          <li class="prep-task" onclick="toggleTask(this)"><input type="checkbox"><span class="task-text">Cook pasta, finish in sauce with pasta water</span></li>
-        </ul>
-      </div>
-      <div class="night-card">
-        <div class="night-number">3</div>
-        <div class="night-label">Night Three</div>
-        <div class="night-meal">Mujaddara with deeply caramelized onions, yogurt, warm spices <span class="reuse-tag">↻ lentils</span></div>
-        <div class="night-note">The beef takes a night off. Caramelizing the onions is not optional — that IS the dish.</div>
-        <ul class="prep-tasks">
-          <li class="prep-task" onclick="toggleTask(this)"><input type="checkbox"><span class="task-text">Slice 3 onions into thin half-moons</span></li>
-          <li class="prep-task" onclick="toggleTask(this)"><input type="checkbox"><span class="task-text">Cook onions in olive oil on medium-low for 35–40 min, stir often</span></li>
-          <li class="prep-task" onclick="toggleTask(this)"><input type="checkbox"><span class="task-text">Cook rice in salted water, fluff with fork</span></li>
-          <li class="prep-task" onclick="toggleTask(this)"><input type="checkbox"><span class="task-text">Warm lentils, season with cumin, coriander, cinnamon</span></li>
-          <li class="prep-task" onclick="toggleTask(this)"><input type="checkbox"><span class="task-text">Mix yogurt with a pinch of cumin and salt</span></li>
-          <li class="prep-task" onclick="toggleTask(this)"><input type="checkbox"><span class="task-text">Layer rice, lentils, caramelized onions in a bowl</span></li>
-        </ul>
-      </div>
-      <div class="night-card">
-        <div class="night-number">4</div>
-        <div class="night-label">Night Four</div>
-        <div class="night-meal">Shakshuka with lentils — eggs poached in spiced tomato-lentil sauce <span class="reuse-tag">↻ lentils</span></div>
-        <div class="night-note">25-minute dinner. Serve with pita or crusty bread. The lentils make it properly filling.</div>
-        <ul class="prep-tasks">
-          <li class="prep-task" onclick="toggleTask(this)"><input type="checkbox"><span class="task-text">Dice half an onion and 1 red pepper if you have one</span></li>
-          <li class="prep-task" onclick="toggleTask(this)"><input type="checkbox"><span class="task-text">Sauté onion, add cumin + smoked paprika, bloom 1 min</span></li>
-          <li class="prep-task" onclick="toggleTask(this)"><input type="checkbox"><span class="task-text">Add crushed tomatoes and remaining lentils, simmer 10 min</span></li>
-          <li class="prep-task" onclick="toggleTask(this)"><input type="checkbox"><span class="task-text">Make 4 wells in the sauce with the back of a spoon</span></li>
-          <li class="prep-task" onclick="toggleTask(this)"><input type="checkbox"><span class="task-text">Crack an egg into each well, cover and cook 5–7 min</span></li>
-          <li class="prep-task" onclick="toggleTask(this)"><input type="checkbox"><span class="task-text">Top with feta crumbles and fresh herbs if you have them</span></li>
-        </ul>
+      <div class="meal-emoji-large">🫘</div>
+      <div class="meal-name">Smoky black bean & sweet potato tacos</div>
+      <div class="meal-desc">Black beans and roasted sweet potato with cumin, chipotle, garlic and lime. Serve in warm tortillas with sliced avocado and a quick cabbage slaw.</div>
+      <div class="leftover-block">
+        <div class="leftover-label">☀️ Tuesday lunch</div>
+        <div class="leftover-text">Reheat the filling and wrap it up again, or pile over rice with a dollop of sour cream.</div>
       </div>
     </div>
-    <div class="section-strip">
-      <div class="section-strip-line"></div>
-      <span class="section-strip-label">Prep Notes + Shopping</span>
-      <div class="section-strip-line"></div>
+
+    <div class="day-card">
+      <div class="day-header">
+        <span class="day-label">Tuesday</span>
+        <span class="time-pill">25 min</span>
+      </div>
+      <div class="meal-emoji-large">🍜</div>
+      <div class="meal-name">Coconut curry noodle soup</div>
+      <div class="meal-desc">Coconut milk, red curry paste, garlic, ginger and chicken broth with rice noodles and shredded rotisserie chicken. Topped with lime and fresh coriander.</div>
+      <div class="leftover-block">
+        <div class="leftover-label">☀️ Wednesday lunch</div>
+        <div class="leftover-text">Store broth and noodles separately if possible. Reheat broth, add fresh noodles or yesterday's — still great.</div>
+      </div>
     </div>
-    <div class="plan-bottom">
-      <div class="tips-card">
-        <div class="card-title">✦ Prep Notes</div>
-        <div class="tip-item">Slice 3 large onions into thin half-moons — uniform thickness so they cook evenly</div>
-        <div class="tip-item">Peel and dice 2 carrots very small, smaller than your pinky nail</div>
-        <div class="tip-item">Mince 4 garlic cloves, keep separate from the onions</div>
-        <div class="tip-item">Measure and pre-mix your spices for nights 1 and 2 into two small bowls</div>
+
+    <div class="day-card">
+      <div class="day-header">
+        <span class="day-label">Wednesday</span>
+        <span class="time-pill">25 min</span>
       </div>
-      <div class="grocery-card">
-        <div class="card-title">Shopping List</div>
-        <ul class="grocery-list" id="list-beef">
-          <li class="grocery-item" onclick="toggleItem(this)"><input type="checkbox"><span class="item-text">Ground beef 80/20 (1 lb)</span></li>
-          <li class="grocery-item" onclick="toggleItem(this)"><input type="checkbox"><span class="item-text">Green or French lentils</span></li>
-          <li class="grocery-item" onclick="toggleItem(this)"><input type="checkbox"><span class="item-text">Eggs (6-pack)</span></li>
-          <li class="grocery-item" onclick="toggleItem(this)"><input type="checkbox"><span class="item-text">Pappardelle or rigatoni</span></li>
-          <li class="grocery-item" onclick="toggleItem(this)"><input type="checkbox"><span class="item-text">Corn tortillas</span></li>
-          <li class="grocery-item" onclick="toggleItem(this)"><input type="checkbox"><span class="item-text">Long-grain white rice</span></li>
-          <li class="grocery-item" onclick="toggleItem(this)"><input type="checkbox"><span class="item-text">Canned whole tomatoes (×2)</span></li>
-          <li class="grocery-item" onclick="toggleItem(this)"><input type="checkbox"><span class="item-text">Onions (3–4) + garlic</span></li>
-          <li class="grocery-item" onclick="toggleItem(this)"><input type="checkbox"><span class="item-text">Pickled jalapeños</span></li>
-          <li class="grocery-item" onclick="toggleItem(this)"><input type="checkbox"><span class="item-text">Cotija or feta</span></li>
-          <li class="grocery-item" onclick="toggleItem(this)"><input type="checkbox"><span class="item-text">Sour cream or yogurt</span></li>
-          <li class="grocery-item" onclick="toggleItem(this)"><input type="checkbox"><span class="item-text">Tomato paste</span></li>
-          <li class="grocery-item" onclick="toggleItem(this)"><input type="checkbox"><span class="item-text">Cumin + smoked paprika</span></li>
-          <li class="grocery-item" onclick="toggleItem(this)"><input type="checkbox"><span class="item-text">Cinnamon + bay leaves</span></li>
-        </ul>
-        <button class="grocery-reset" onclick="resetList('list-beef')">Reset list</button>
+      <div class="meal-emoji-large">🍳</div>
+      <div class="meal-name">Shakshuka with feta & crusty bread</div>
+      <div class="meal-desc">Eggs poached in a spiced tomato and pepper sauce with cumin, paprika and garlic. Crumble feta on top. Serve straight from the pan with bread.</div>
+      <div class="leftover-block">
+        <div class="leftover-label">☀️ Thursday lunch</div>
+        <div class="leftover-text">Reheat the sauce gently and crack in fresh eggs — takes 8 minutes. Or just eat the sauce cold over bread.</div>
       </div>
+    </div>
+
+    <div class="day-card">
+      <div class="day-header">
+        <span class="day-label">Thursday</span>
+        <span class="time-pill">30 min</span>
+      </div>
+      <div class="meal-emoji-large">🥗</div>
+      <div class="meal-name">Crispy chickpea & roasted veg grain bowl</div>
+      <div class="meal-desc">Chickpeas roasted until golden with olive oil and smoked paprika, over farro or quinoa with roasted sweet potato, spinach and tahini-lemon dressing.</div>
+      <div class="leftover-block">
+        <div class="leftover-label">☀️ Friday lunch</div>
+        <div class="leftover-text">Grain bowls are perfect cold. Pack as-is — the tahini dressing keeps everything together.</div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="ingredients-row">
+    <div class="ingredients-header">
+      <span class="ingredients-title">Shopping list</span>
+      <div style="display:flex;align-items:center;gap:12px;">
+        <div class="legend-pills">
+          <span class="legend-pill"><span class="legend-dot" style="background:#2D6A4F;"></span>Pantry staples</span>
+          <span class="legend-pill"><span class="legend-dot" style="background:#888;"></span>Buy fresh</span>
+        </div>
+        <button class="clear-btn" onclick="clearList('w2')" style="color:#aaa;border-color:#444;">Clear</button>
+      </div>
+    </div>
+    <div class="ingredients-body" id="w2-list">
+      <div class="ing-section-label">Pantry staples</div>
+      <label class="ing-item shared"><input type="checkbox" onchange="toggleItem(this)"><span class="ing-label">Garlic</span></label>
+      <label class="ing-item shared"><input type="checkbox" onchange="toggleItem(this)"><span class="ing-label">Olive oil</span></label>
+      <label class="ing-item shared"><input type="checkbox" onchange="toggleItem(this)"><span class="ing-label">Canned tomatoes ×2</span></label>
+      <label class="ing-item shared"><input type="checkbox" onchange="toggleItem(this)"><span class="ing-label">Spinach</span></label>
+      <label class="ing-item shared"><input type="checkbox" onchange="toggleItem(this)"><span class="ing-label">Lime</span></label>
+      <label class="ing-item shared"><input type="checkbox" onchange="toggleItem(this)"><span class="ing-label">Cumin</span></label>
+      <label class="ing-item shared"><input type="checkbox" onchange="toggleItem(this)"><span class="ing-label">Smoked paprika</span></label>
+      <div class="ing-section-label">Buy fresh</div>
+      <label class="ing-item unique"><input type="checkbox" onchange="toggleItem(this)"><span class="ing-label">Black beans ×2 cans</span></label>
+      <label class="ing-item unique"><input type="checkbox" onchange="toggleItem(this)"><span class="ing-label">Sweet potato ×2</span></label>
+      <label class="ing-item unique"><input type="checkbox" onchange="toggleItem(this)"><span class="ing-label">Chipotle powder</span></label>
+      <label class="ing-item unique"><input type="checkbox" onchange="toggleItem(this)"><span class="ing-label">Tortillas ×4</span></label>
+      <label class="ing-item unique"><input type="checkbox" onchange="toggleItem(this)"><span class="ing-label">Avocado ×1</span></label>
+      <label class="ing-item unique"><input type="checkbox" onchange="toggleItem(this)"><span class="ing-label">Cabbage (small)</span></label>
+      <label class="ing-item unique"><input type="checkbox" onchange="toggleItem(this)"><span class="ing-label">Coconut milk ×1 can</span></label>
+      <label class="ing-item unique"><input type="checkbox" onchange="toggleItem(this)"><span class="ing-label">Red curry paste</span></label>
+      <label class="ing-item unique"><input type="checkbox" onchange="toggleItem(this)"><span class="ing-label">Ginger</span></label>
+      <label class="ing-item unique"><input type="checkbox" onchange="toggleItem(this)"><span class="ing-label">Chicken broth</span></label>
+      <label class="ing-item unique"><input type="checkbox" onchange="toggleItem(this)"><span class="ing-label">Rice noodles</span></label>
+      <label class="ing-item unique"><input type="checkbox" onchange="toggleItem(this)"><span class="ing-label">Rotisserie chicken ×1</span></label>
+      <label class="ing-item unique"><input type="checkbox" onchange="toggleItem(this)"><span class="ing-label">Coriander</span></label>
+      <label class="ing-item unique"><input type="checkbox" onchange="toggleItem(this)"><span class="ing-label">Eggs ×6</span></label>
+      <label class="ing-item unique"><input type="checkbox" onchange="toggleItem(this)"><span class="ing-label">Bell pepper ×1</span></label>
+      <label class="ing-item unique"><input type="checkbox" onchange="toggleItem(this)"><span class="ing-label">Feta 150g</span></label>
+      <label class="ing-item unique"><input type="checkbox" onchange="toggleItem(this)"><span class="ing-label">Chickpeas ×1 can</span></label>
+      <label class="ing-item unique"><input type="checkbox" onchange="toggleItem(this)"><span class="ing-label">Farro or quinoa</span></label>
+      <label class="ing-item unique"><input type="checkbox" onchange="toggleItem(this)"><span class="ing-label">Tahini</span></label>
+      <label class="ing-item unique"><input type="checkbox" onchange="toggleItem(this)"><span class="ing-label">Lemon</span></label>
     </div>
   </div>
-</section>
+</div>
 
 <footer>
-  <div class="footer-title">Cook more.<br>Spend less.</div>
-  <p class="footer-sub">Four nights. One anchor. Zero stress.</p>
-  <div class="footer-dots">
-    <div class="footer-dot" style="background:#FF6B35"></div>
-    <div class="footer-dot" style="background:#FFD23F"></div>
-    <div class="footer-dot" style="background:#06D6A0"></div>
-    <div class="footer-dot" style="background:#EF476F"></div>
-    <div class="footer-dot" style="background:#8338EC"></div>
-  </div>
+  <span class="footer-note">All dinners serve 4 · Leftovers cover next-day lunch for 2</span>
+  <span class="footer-badge">The Leftover Chronicles</span>
 </footer>
 
 <script>
-function toggleAcc(item) {
-  const isOpen = item.classList.contains('open');
-  document.querySelectorAll('.acc-item').forEach(i => i.classList.remove('open'));
-  if (!isOpen) item.classList.add('open');
-}
-function toggleItem(el) {
-  const cb = el.querySelector('input[type="checkbox"]');
-  cb.checked = !cb.checked;
-  el.classList.toggle('checked', cb.checked);
-}
-function toggleTask(el) {
-  const cb = el.querySelector('input[type="checkbox"]');
-  cb.checked = !cb.checked;
-  el.classList.toggle('checked', cb.checked);
-}
-function resetList(id) {
-  document.getElementById(id).querySelectorAll('.grocery-item').forEach(item => {
-    item.querySelector('input').checked = false;
-    item.classList.remove('checked');
-  });
-}
+  function showWeek(n) {
+    document.querySelectorAll('.week-section').forEach(s => s.classList.remove('active'));
+    document.querySelectorAll('.week-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById('week-' + n).classList.add('active');
+    document.querySelectorAll('.week-btn')[n - 1].classList.add('active');
+  }
+
+  function toggleItem(cb) {
+    cb.closest('.ing-item').classList.toggle('checked', cb.checked);
+  }
+
+  function clearList(id) {
+    const list = document.getElementById(id + '-list');
+    list.querySelectorAll('input[type="checkbox"]').forEach(cb => {
+      cb.checked = false;
+      cb.closest('.ing-item').classList.remove('checked');
+    });
+  }
 </script>
+
 </body>
 </html>
